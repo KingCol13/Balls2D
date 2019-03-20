@@ -6,6 +6,8 @@
 int main(int argc, char **argv){
     QApplication app (argc, argv);
 
+    //comment for testing.
+
     Simulation sim(5, 1, 1, 10, 0.1);
     sim.ball_list[0].printData();
     sim.ball_list[1].printData();
