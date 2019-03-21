@@ -128,6 +128,7 @@ void Simulation::next_collision(){
 
 
     //Update t_cols array keeping it upper triangular
+<<<<<<< HEAD
     //Start with two balls just collided
     if(ball_list[i_min].getRadius() > 0 && ball_list[j_min].getRadius() > 0){
         t_cols[i_min][j_min] = std::numeric_limits<double>::infinity();
@@ -136,6 +137,9 @@ void Simulation::next_collision(){
         t_cols[i_min][j_min] = ball_list[i_min].time_to_collision(ball_list[j_min]);
     }
     //Everything else in t_cols
+=======
+    t_cols[i_min][j_min] = ball_list[i_min].time_to_collision(ball_list[j_min]);
+>>>>>>> c8d68fb3095c54fee9b9c61c3917cd002dfa2284
     for(i=0; i<num_balls; i++){
         if(i!=i_min && i!=j_min){
             if(i>i_min){
@@ -162,12 +166,15 @@ void Simulation::run(int num_cols, bool animate, bool histos){
     }
 }
 
+<<<<<<< HEAD
 void Simulation::printData(){
     for(int i=0; i<num_balls; i++){
         ball_list[i].printData();
     }
 }
 
+=======
+>>>>>>> c8d68fb3095c54fee9b9c61c3917cd002dfa2284
 Simulation::~Simulation()
 {
     //dtor
