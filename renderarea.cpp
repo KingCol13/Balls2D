@@ -16,7 +16,6 @@ void renderArea::slotButtonClicked(){
 void renderArea::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.setPen(Qt::blue);
 
     QPointF point;
     double *pos;
@@ -32,10 +31,13 @@ void renderArea::paintEvent(QPaintEvent *)
     painter.translate(width() / 2, height() / 2);
     painter.scale(side / (2*rad), side / (2*rad));
 
+    painter.setPen(QPen(Qt::blue, 0));
+
     painter.drawEllipse(point, rad, rad);
 
 
-    painter.setPen(Qt::red);
+    painter.setPen(QPen(Qt::red, 0));
+    painter.setBrush(Qt::red);
     for(int i=0; i<sim->num_balls-1; i++){
         pos = sim->ball_list[i].getPos();
         rad = sim->ball_list[i].getRadius();
