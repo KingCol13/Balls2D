@@ -92,9 +92,9 @@ void Ball::printData(){
     else{
         printf("\nContainer:\n");
     }
-    printf("Position: (%lg, %lg)\n", pos[0], pos[1]);
-    printf("Velocity: (%lg, %lg)\n", vel[0], vel[1]);
-    printf("Mass: %lg, Radius: %lg\n", mass, radius);
+    printf("Position: (%g, %g)\n", pos[0], pos[1]);
+    printf("Velocity: (%g, %g)\n", vel[0], vel[1]);
+    printf("Mass: %g, Radius: %g\n", mass, radius);
 }
 
 Ball::~Ball()

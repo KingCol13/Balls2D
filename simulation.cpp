@@ -5,6 +5,8 @@
 #include <limits>
 #include <stdio.h>
 #include <random>
+#include <chrono>
+#include <iostream>
 
 #ifndef PI
 #define PI 3.14159265
@@ -17,8 +19,9 @@ Simulation::Simulation(int no_balls,double max_vel, double ball_radius, double c
     double b_mass = 1;
     cont = new Container(5e5, 10);
 
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::default_random_engine re (seed);
     std::uniform_real_distribution<double> unif(0, max_vel);
-    std::default_random_engine re;
 
     int bpr = 1;
     int ring_no = 0;
@@ -31,8 +34,6 @@ Simulation::Simulation(int no_balls,double max_vel, double ball_radius, double c
     double r_theta;
     double r_gap = spacing;
     double arc_gap = spacing;
-
-
 
     for(i=0; i<num_balls; ++i, ++j){
             vel[0] = unif(re);
@@ -90,7 +91,7 @@ void Simulation::next_collision(){
     }
 
     time += t_min;
-    printf("t_min = %lg\n", t_min);
+    printf("t_min = %g\n", t_min);
 
 
     /*TODO: Fix this pressure stuff
