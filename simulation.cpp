@@ -31,7 +31,7 @@ Simulation::Simulation(int no_balls,double max_vel, double ball_radius, double c
     double vel[2];
     double pos[2];
 
-    double r_theta;
+    double r_theta=0;
     double r_gap = spacing;
     double arc_gap = spacing;
 
@@ -71,6 +71,7 @@ Simulation::Simulation(int no_balls,double max_vel, double ball_radius, double c
             }
         }
     }
+    col_number = 0;
 }
 
 void Simulation::next_collision(){
@@ -78,6 +79,7 @@ void Simulation::next_collision(){
     double t_min = std::numeric_limits<double>::infinity();
     int i_min, j_min;
     int i, j;
+    int crash_pos = 0;
 
     //TODO: optimise this so it only checks balls that just collided and compares with last tmin
     for(i=0;i<num_balls;i++){
@@ -90,9 +92,8 @@ void Simulation::next_collision(){
         }
     }
 
+    crash_pos = 1;
     time += t_min;
-    printf("t_min = %g\n", t_min);
-
 
     /*TODO: Fix this pressure stuff
     //get velocities to work out pressure
@@ -119,6 +120,7 @@ void Simulation::next_collision(){
         }
     }
 
+    crash_pos = 2;
 
     //Subtract t_min from t_cols for next time update (as we have moved forwards in time now compared to when t_cols was calculated)
     for(i=0; i<num_balls; i++){
@@ -126,6 +128,8 @@ void Simulation::next_collision(){
             t_cols[i][j]-=t_min;
         }
     }
+
+    crash_pos = 3;
 
 
     //Update t_cols array keeping it upper triangular
@@ -153,9 +157,12 @@ void Simulation::next_collision(){
         }
     }
 
+    crash_pos = 4;
+
+    ++col_number;
 }
 
-void Simulation::run(int num_cols, bool animate, bool histos){
+void Simulation::run(int num_cols){
     int i;
     for(i=0; i<num_cols; i++){
         next_collision();

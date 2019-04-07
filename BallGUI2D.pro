@@ -12,7 +12,8 @@ HEADERS += \
     container.h \
     simulation.h \
     window.h \
-    renderarea.h
+    renderarea.h \
+    worker.h
 
 SOURCES += \
     ball.cpp \
@@ -20,4 +21,5 @@ SOURCES += \
     simulation.cpp \
     window.cpp \
     guimain.cpp \
-    renderarea.cpp
+    renderarea.cpp \
+    worker.cpp

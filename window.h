@@ -2,9 +2,12 @@
 #define WINDOW_H
 
 #include <QWidget>
+#include <QMainWindow>
+#include <QThread>
 
 
 #include "renderarea.h"
+#include "worker.h"
 
 class QPushButton;
 class Window : public QWidget{
@@ -13,7 +16,11 @@ class Window : public QWidget{
         explicit Window(QWidget *parent = 0);
         renderArea *rendArea;
     private:
-        QPushButton *m_button;
+        QPushButton *col_button;
+        QPushButton *play_button;
+        Worker *worker;
+    private slots:
+        void slotPlayButtonClicked(bool checked);
 };
 
 #endif // WINDOW_H

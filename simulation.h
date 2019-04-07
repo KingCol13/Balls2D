@@ -9,11 +9,12 @@ class Simulation
     public:
         Simulation(int no_balls,double max_vel, double ball_radius, double cont_rad, double spacing);
         void next_collision();
-        void run(int num_cols, bool animate, bool histos);
+        void run(int num_cols);
         void printData();
         virtual ~Simulation();
         std::vector<Ball> ball_list;
         int num_balls;
+        long col_number;
     protected:
         double time;
         Container *cont;
